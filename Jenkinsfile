@@ -36,5 +36,18 @@ pipeline {
         }
       }
     }
+    stage('Test') {
+      steps {
+        script {
+          try {
+            sh "npm run test"
+            env.TEST_STATUS = 'success'
+          } catch (e) {
+            console.log(e)
+            env.TEST_STATUS = 'failure'
+          }
+        }
+      }
+    }
   }
 }
