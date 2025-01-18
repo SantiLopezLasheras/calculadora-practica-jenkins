@@ -15,12 +15,11 @@ pipeline {
               string(name: 'chatID', defaultValue: 'num_chat', description: 'ChatID de telegram per a notificar els resultats')
             ]
           )
+          // Assignació a variables d'entorn
+          env.executor = userInput.executor
+          env.motiu = userInput.motiu
+          env.chatID = userInput.chatID
         }
-
-      // Assignació a variables d'entorn
-      env.executor = userInput.executor
-      env.motiu = userInput.motiu
-      env.chatID = userInput.chatID
       }
     }
   }
