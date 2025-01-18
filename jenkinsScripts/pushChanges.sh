@@ -3,4 +3,4 @@ git fetch origin
 git add .
 git commit -m "Pipeline executada per ${env.executor}. Motiu: ${env.motiu}"
 git status
-git push -v origin HEAD:ci_jenkins
+git push origin HEAD:ci_jenkins
