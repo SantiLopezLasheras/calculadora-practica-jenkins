@@ -75,7 +75,7 @@ pipeline {
     }
     stage('Push_Changes') {
       steps {
-        sh "./jenkinsScripts/pushChanges.sh"
+        sh "chmod +x ./jenkinsScripts/pushChanges.sh"
       }
     }
   }
