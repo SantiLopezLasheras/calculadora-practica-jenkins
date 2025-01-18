@@ -6,6 +6,7 @@ pipeline {
     GITHUB_USERNAME = credentials('github-username') 
     GITHUB_TOKEN = credentials('token-github')
     GITHUB_EMAIL = credentials('github-email')
+  }
 
   stages{
     stage('Petició de dades') {
