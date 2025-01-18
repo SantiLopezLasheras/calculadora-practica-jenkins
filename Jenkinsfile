@@ -53,6 +53,18 @@ pipeline {
       steps {
         sh "npm run build"
       }
+    }stage('Update_Readme') {
+      steps {
+        script {
+          try {
+            sh "node ./jenkinsScripts/updateReadme.js '${env.TEST_STATUS}'" 
+            env.UPDATE_README_STATUS = 'success'
+          } catch (e) {
+            console.log(e)
+            env.UPDATE_README_STATUS = 'failure'
+          }
+        }
+      }
     }
   }
 }
