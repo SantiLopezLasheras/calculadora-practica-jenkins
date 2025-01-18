@@ -1,3 +1,8 @@
+echo ${env.GITHUB_USERNAME}
+echo ${env.GITHUB_TOKEN}
+echo ${env.GITHUB_EMAIL}
+echo ${env.executor}
+echo ${env.motiu}
 git remote set-url origin https://${env.GITHUB_USERNAME}:${env.GITHUB_TOKEN}@github.com/SantiLopezLasheras/calculadora-practica-jenkins.git
 git config --global user.email ${env.GITHUB_EMAIL}
 git config --global user.name ${env.GITHUB_USERNAME}
