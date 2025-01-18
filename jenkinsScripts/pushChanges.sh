@@ -1,6 +1,6 @@
-git remote set-url origin https://${env.GITHUB_USERNAME}:${env.GITHUB_TOKEN}@github.com/SantiLopezLasheras/jenkins-obligatoria-prueba.git
+git remote set-url origin https://${env.GITHUB_USERNAME}:${env.GITHUB_TOKEN}@github.com/SantiLopezLasheras/calculadora-practica-jenkins.git
 git config --global user.email ${env.GITHUB_EMAIL}
-git config --global user.name SantiLopezLasheras
+git config --global user.name ${env.GITHUB_USERNAME}
 git fetch origin
 git add .
 git status

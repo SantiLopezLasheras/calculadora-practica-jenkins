@@ -4,7 +4,7 @@ pipeline {
 
   environment {
     GITHUB_USERNAME = credentials('github-username') 
-    GITHUB_TOKEN = credentials('token-github')
+    GITHUB_TOKEN = credentials('github-token')
     GITHUB_EMAIL = credentials('github-email')
   }
 
