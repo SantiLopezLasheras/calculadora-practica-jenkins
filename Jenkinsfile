@@ -74,9 +74,6 @@ pipeline {
       }
     }
     stage('Push_Changes') {
-      // steps {
-      //   sh "chmod +x ./jenkinsScripts/pushChanges.sh"
-      // }
       steps {
         withCredentials([usernamePassword(credentialsId: 'token-github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
           // Usamos el nombre de usuario y el token para autenticar la URL remota de GitHub
