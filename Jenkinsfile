@@ -7,6 +7,7 @@ pipeline {
     GITHUB_TOKEN = credentials('github-token')
     GITHUB_EMAIL = credentials('github-email')
     VERCEL_TOKEN = credentials('vercel-token')
+    BOT_TOKEN = credentials('telegrambot-token')
   }
 
   stages{
@@ -86,13 +87,40 @@ pipeline {
       }
       }
     }
-    stage("Deploy to Vercel") {
+    stage('Deploy to Vercel') {
       steps {
-        sh "chmod +x ./jenkinsScripts/deployVercel.sh"
-        sh """
-          export vercelToken="${env.VERCEL_TOKEN}"
-          bash ./jenkinsScripts/deployVercel.sh
-        """
+        script {
+          try {
+            sh "chmod +x ./jenkinsScripts/deployVercel.sh"
+            sh """
+              export vercelToken="${env.VERCEL_TOKEN}"
+              bash ./jenkinsScripts/deployVercel.sh
+            """
+            env.DEPLOY_STATUS = 'success'
+          } catch (e) {
+            console.log(e)
+            env.DEPLOY_STATUS = 'failure'
+          }
+        }
+      }
+    }
+    stage('Notificació') {
+      steps {
+        script {
+          // Accediendo a los resultados de cada etapa
+          echo "Resultado Linter: ${env.LINTER_STATUS}"
+          echo "Resultado Test: ${env.TEST_STATUS}"
+          echo "Resultado Update_Readme: ${env.UPDATE_README_STATUS}"
+          echo "Resultado Deploy to Vercel: ${env.DEPLOY_STATUS}"
+        }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+        sh "npm install node-telegram-bot-api"
+        sh "node ./jenkinsScripts/sendMessage.js '${env.chatID}' '${env.LINTER_STATUS}' '${env.TEST_STATUS}' '${env.UPDATE_README_STATUS}' '${env.DEPLOY_STATUS}' '${env.BOT_TOKEN}'"
       }
     }
   }
