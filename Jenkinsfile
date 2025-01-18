@@ -77,7 +77,11 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'token-github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
           sh "chmod +x ./jenkinsScripts/pushChanges.sh"
-          sh "bash ./jenkinsScripts/pushChanges.sh" 
+          sh """
+            export executor=${env.executor}
+            export motiu=${env.motiu}
+            bash ./jenkinsScripts/pushChanges.sh
+          """
       }
       }
     }
