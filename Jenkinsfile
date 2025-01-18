@@ -83,14 +83,11 @@ pipeline {
           sh """
             git remote set-url origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/SantiLopezLasheras/calculadora-practica-jenkins.git
             git fetch origin
-            git status
-            git pull -v origin main
             git add .
             git status
             git commit -m "Pipeline executada per ${params.executor}. Motiu: ${params.motiu}"
             git status
-            git pull origin main
-            git push -v origin HEAD:main
+            git push -v origin HEAD:ci_jenkins
           """
       }
       }
