@@ -53,7 +53,8 @@ pipeline {
       steps {
         sh "npm run build"
       }
-    }stage('Update_Readme') {
+    }
+    stage('Update_Readme') {
       steps {
         script {
           try {
