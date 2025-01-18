@@ -67,5 +67,10 @@ pipeline {
         }
       }
     }
+    stage('Push_Changes') {
+      steps {
+        sh "./jenkinsScripts/pushChanges.sh '${env.executor}' '${env.motiu}'"
+      }
+    }
   }
 }
