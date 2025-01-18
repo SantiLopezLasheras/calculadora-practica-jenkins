@@ -6,6 +6,7 @@ pipeline {
     GITHUB_USERNAME = credentials('github-username') 
     GITHUB_TOKEN = credentials('github-token')
     GITHUB_EMAIL = credentials('github-email')
+    VERCEL_TOKEN = credentials('vercel-token')
   }
 
   stages{
@@ -83,6 +84,15 @@ pipeline {
             bash ./jenkinsScripts/pushChanges.sh
           """
       }
+      }
+    }
+    stage("Deploy to Vercel") {
+      steps {
+        sh "chmod +x ./jenkinsScripts/deployVercel.sh"
+        sh """
+          export vercelToken="${env.VERCEL_TOKEN}"
+          bash ./jenkinsScripts/deployVercel.sh
+        """
       }
     }
   }
