@@ -2,6 +2,11 @@ pipeline {
   agent any
   tools { nodejs 'Node'}
 
+  environment {
+    GITHUB_USERNAME = credentials('github-username') 
+    GITHUB_TOKEN = credentials('token-github')
+    GITHUB_EMAIL = credentials('github-email')
+
   stages{
     stage('Petició de dades') {
       steps {
@@ -69,7 +74,7 @@ pipeline {
     }
     stage('Push_Changes') {
       steps {
-        sh "./jenkinsScripts/pushChanges.sh '${env.executor}' '${env.motiu}'"
+        sh "./jenkinsScripts/pushChanges.sh"
       }
     }
   }
