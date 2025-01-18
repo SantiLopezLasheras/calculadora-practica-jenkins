@@ -74,12 +74,14 @@ pipeline {
       }
     }
     stage('Push_Changes') {
-      withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
+      // steps {
+      //   sh "chmod +x ./jenkinsScripts/pushChanges.sh"
+      // }
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'github-token', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
           // Usamos el nombre de usuario y el token para autenticar la URL remota de GitHub
           sh """
             git remote set-url origin https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/SantiLopezLasheras/calculadora-practica-jenkins.git
-            git config --global user.email sanloplas@alu.edu.gva.es
-            git config --global user.name santijll
             git fetch origin
             git status
             git pull -v origin main
@@ -90,9 +92,10 @@ pipeline {
             git pull origin main
             git push -v origin HEAD:main
           """
-      // steps {
-      //   sh "chmod +x ./jenkinsScripts/pushChanges.sh"
-      // }
+      }
+      }
+
     }
   }
 }
+
