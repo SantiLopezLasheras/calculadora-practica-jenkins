@@ -22,5 +22,19 @@ pipeline {
         }
       }
     }
+    stage('Linter') {
+      steps {
+        script {
+          try {
+            sh "npm install"
+            sh "npm run lint"
+            env.LINTER_STATUS = 'success'
+          } catch (e) {
+            console.log(e)
+            env.LINTER_STATUS = 'failure'
+          }
+        }
+      }
+    }
   }
 }
