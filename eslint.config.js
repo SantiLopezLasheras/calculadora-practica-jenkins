@@ -15,6 +15,7 @@ export default [
         test: "readonly",
         describe: "readonly",
         expect: "readonly",
+        process: "readonly",
       },
       parserOptions: {
         ecmaVersion: "latest",
