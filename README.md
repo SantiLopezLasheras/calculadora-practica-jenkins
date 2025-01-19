@@ -1,5 +1,6 @@
 RESULTADO DE LOS ÚLTIMOS TESTS:
 <img src="https://img.shields.io/badge/tested%20with-Cypress-04C38E.svg" />
+
 # Introducción teórica
 
 En esta práctica vamos a trabajar con Jenkins en lugar de GitHub Actions. Al igual que con GitHub Actions, es importante recordar el concepto de CI/CD.
@@ -273,3 +274,7 @@ El paso de "post" instalará el paquete node-telegram-bot-api y después ejecuta
 Con este último paso, ya tenemos todos los pasos de nuestra pipeline terminada. Una vez ejecutamos la pipeline en Jenkins, recibimos un mensaje en Telegram con los resultados:
 
 <img src="/public/images/image49.png" width="500" />
+
+En la consola vemos que el commit de Jenkins tiene el formato que habíamos especificado:
+
+<img src="/public/images/image50.png" width="500" />

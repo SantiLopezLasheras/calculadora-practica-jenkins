@@ -271,3 +271,7 @@ El paso de "post" instalará el paquete node-telegram-bot-api y después ejecuta
 Con este último paso, ya tenemos todos los pasos de nuestra pipeline terminada. Una vez ejecutamos la pipeline en Jenkins, recibimos un mensaje en Telegram con los resultados:
 
 <img src="/public/images/image49.png" width="500" />
+
+En la consola vemos que el commit de Jenkins tiene el formato que habíamos especificado:
+
+<img src="/public/images/image50.png" width="500" />
